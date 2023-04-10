@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 from PIL import ImageTk     #Pillow
-from ims_stock import Stock
+from danny_stock import Stock
 import pymysql
 
 class login_system:
@@ -42,7 +42,7 @@ class login_system:
         if self.uname.get()=="" or self.pass_.get()=="":
             messagebox.showerror("Error","All fields are required")
             return
-        con=pymysql.connect(host="localhost",user="root",password="",database="ims")
+        con=pymysql.connect(host="localhost",user="root",password="",database="danny")
         cur=con.cursor()
         statement=f"select * from users where username='{self.uname.get()}' and pass='{self.pass_.get()}'"
         cur.execute(statement)
