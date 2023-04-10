@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from random import randint
 import pymysql
-from ims_bill import Bill_App
+from danny_bill import Bill_App
 
 class Stock:
     def __init__(self,root):
@@ -125,7 +125,7 @@ class Stock:
         self.Stock_Table.bind("<ButtonRelease-1>",self.get_cursor)
 
     def add_stock(self):
-        con=pymysql.connect(host="localhost",user="root",password="",database="ims")
+        con=pymysql.connect(host="localhost",user="root",password="",database="danny")
         cur=con.cursor()
         statement=f"insert into stocks values ('{self.item_no.get()}','{self.item_name.get()}',{self.item_qty.get()},{self.item_price.get()})"
         cur.execute(statement)
@@ -135,7 +135,7 @@ class Stock:
         con.close()
 
     def fetch_date(self):
-        con=pymysql.connect(host="localhost",user="root",password="",database="ims")
+        con=pymysql.connect(host="localhost",user="root",password="",database="danny")
         cur=con.cursor()
         cur.execute("select * from stocks")
         rows=cur.fetchall()
@@ -162,7 +162,7 @@ class Stock:
         self.item_price.set(row[3])
 
     def update_data(self):
-        con=pymysql.connect(host="localhost",user="root",password="",database="ims")
+        con=pymysql.connect(host="localhost",user="root",password="",database="danny")
         cur=con.cursor()
         statement=f"update stocks set item_no='{self.item_no.get()}', qty={self.item_qty.get()}, price={self.item_price.get()},name='{self.item_name.get()}' where item_no={self.item_no.get()}"
         cur.execute(statement)
@@ -172,7 +172,7 @@ class Stock:
         con.close()
 
     def delete_data(self):
-        con=pymysql.connect(host="localhost",user="root",password="",database="ims")
+        con=pymysql.connect(host="localhost",user="root",password="",database="danny")
         cur=con.cursor()
         cur.execute(f"delete from stocks where item_no='{self.item_no.get()}'")
         con.commit()
@@ -181,7 +181,7 @@ class Stock:
         self.clear()
 
     def search_data(self):
-        con=pymysql.connect(host="localhost",user="root",password="",database="ims")
+        con=pymysql.connect(host="localhost",user="root",password="",database="danny")
         cur=con.cursor()
         if f'{self.search_by.get()}'=='Item No':
             statement=f"select * from stocks where item_no='{self.search_txt.get()}'"
