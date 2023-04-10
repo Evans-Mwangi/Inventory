@@ -150,7 +150,7 @@ class Bill_App:
         if self.search_item_name.get()=="":
             messagebox.showerror("Error","No input entered")
             return
-        con=pymysql.connect(host="localhost",user="root",password="",database="ims")
+        con=pymysql.connect(host="localhost",user="root",password="",database="danny")
         cur=con.cursor()
         cur.execute(f"select * from stocks where item_name LIKE '%{self.search_item_name.get()}%'")
         rows=cur.fetchall()
@@ -166,7 +166,7 @@ class Bill_App:
     def add_item(self):
 
         ###########
-        con=pymysql.connect(host="localhost",user="root",password="",database="ims")
+        con=pymysql.connect(host="localhost",user="root",password="",database="danny")
         cur=con.cursor()
         cur.execute(f"select * from stocks where item_no={self.item_no.get()}")
         rows=cur.fetchall()
@@ -193,7 +193,7 @@ class Bill_App:
             self.Stock_Table.insert('',END, values=new_item)
 
     def bill_area(self):
-        con=pymysql.connect(host="localhost",user="root",password="",database="ims")
+        con=pymysql.connect(host="localhost",user="root",password="",database="danny")
         cur=con.cursor()
         total=0
         if self.c_name.get()=='':
@@ -291,7 +291,7 @@ class Bill_App:
         self.welcome_bill()
 
     def find_bill(self):
-        con=pymysql.connect(host="localhost",user="root",password="",database="ims")
+        con=pymysql.connect(host="localhost",user="root",password="",database="danny")
         cur=con.cursor()
         cur.execute(f"select * from sales_bill where inv_id={self.search_bill.get()}")
         rows=cur.fetchall()
